@@ -3,22 +3,30 @@ package ui;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class GameWaitRoom extends MainFrame {
 	private JLabel waitingRoomLabel, background;
 	private WaitingPlayerJPanel waitingPlayerPanel;
 	private WaitingRoomChatJPanel waitingRoomChatJPanel;
+	private JButton leave;
 
 	public GameWaitRoom() {
 		// TODO Auto-generated constructor stub
 		initJLabel();
 		initPanel();
+		initJButton();
 		initBackground();
 		initBound();
 		setComponentFont();
 		revalidate();
 		repaint();
+	}
+
+	private void initJButton() {
+		leave = new JButton("離開");
+		add(leave);
 	}
 
 	private void initBackground() {
@@ -33,6 +41,7 @@ public class GameWaitRoom extends MainFrame {
 	private void initBound() {
 		waitingRoomLabel.setBounds((getWidth() + 16) / 2 - 75, 20, 150, 50);
 		background.setBounds(0, 0, getWidth(), getHeight());
+		leave.setBounds(getWidth() - 175, 700, 100, 50);
 	}
 
 	private void initJLabel() {

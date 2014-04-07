@@ -56,7 +56,6 @@ public class WaitingPlayerJPanel extends JPanel {
 
 	private void initJPanel() {
 		waitingPlayerInfoPanel = new WaitingPlayerInfoJPanel(getWidth() / 2, waitingPlayerLabel.getHeight(), getWidth() / 2, getHeight() - waitingPlayerLabel.getHeight());
-		waitingPlayerInfoPanel.setBackground(Color.black);
 		add(waitingPlayerInfoPanel);
 	}
 }

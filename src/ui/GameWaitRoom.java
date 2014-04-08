@@ -26,6 +26,7 @@ public class GameWaitRoom extends MainFrame {
 		repaint();
 		testDrive();
 		
+		//五秒後更新等待清單為9 模擬若選擇的玩家更新後不再等待清單之狀況
 		Thread t = new Thread(new Runnable() {
 			
 			@Override
@@ -38,7 +39,7 @@ public class GameWaitRoom extends MainFrame {
 					e.printStackTrace();
 				}
 				String[] a = new String[1];
-				a[0] = "1";
+				a[0] = "9";
 				waitingPlayerPanel.updateWaitingPlayerList(a);
 			}
 		});

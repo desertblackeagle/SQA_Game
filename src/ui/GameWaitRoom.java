@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,10 +24,55 @@ public class GameWaitRoom extends MainFrame {
 		setComponentFont();
 		revalidate();
 		repaint();
+		testDrive();
+		
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String[] a = new String[1];
+				a[0] = "1";
+				waitingPlayerPanel.updateWaitingPlayerList(a);
+			}
+		});
+		t.start();
 	}
+
+	// Test Drive //
+
+	private void testDrive() {
+		String[] waitingPlayerList = new String[5];
+		for (int i = 0; i < 5; i++) {
+			waitingPlayerList[i] = String.valueOf(i + 1);
+		}
+		waitingPlayerPanel.updateWaitingPlayerList(waitingPlayerList);
+
+		waitingRoomChatJPanel.appendChatArea("凡凡:我是阿呆凡");
+		waitingRoomChatJPanel.appendChatArea("斑比:我是呆比");
+		
+	}
+
+	// Test Drive end //
+
+	// init Component //
 
 	private void initJButton() {
 		leave = new JButton("離開");
+		leave.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 		add(leave);
 	}
 
@@ -59,4 +106,6 @@ public class GameWaitRoom extends MainFrame {
 		waitingRoomChatJPanel.setOpaque(false);
 		add(waitingRoomChatJPanel);
 	}
+
+	// init Component end //
 }

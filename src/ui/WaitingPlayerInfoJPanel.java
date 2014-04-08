@@ -16,6 +16,7 @@ public class WaitingPlayerInfoJPanel extends JPanel {
 	private JPanel playerInfo;
 	private JButton challenge;
 	private ImageIcon noPlayerImageIcon;
+	private String playerName;
 
 	// init Component //
 
@@ -79,6 +80,7 @@ public class WaitingPlayerInfoJPanel extends JPanel {
 					System.out.println("請選擇等待玩家");
 				} else {
 					// challenge the player
+					System.out.println("挑戰玩家 " + playerName);
 				}
 			}
 		});
@@ -89,8 +91,6 @@ public class WaitingPlayerInfoJPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-//		float lineWidth = 3.25f;
-//		((Graphics2D) g).setStroke(new BasicStroke(lineWidth));
 		((Graphics2D) g).setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		((Graphics2D) g).drawLine(0, getHeight() * 5 / 6 - 2, getWidth(), getHeight() * 5 / 6 - 2);
 		((Graphics2D) g).drawString("勝 : ", 5, 455);
@@ -117,6 +117,10 @@ public class WaitingPlayerInfoJPanel extends JPanel {
 		playerInfo_Win.setText(win);
 		playerInfo_Lose.setText(lose);
 		playerInfo_Tie.setText(tie);
+	}
+
+	public void setSelectedPlayer(String player) {
+		playerName = player;
 	}
 
 	// API end //

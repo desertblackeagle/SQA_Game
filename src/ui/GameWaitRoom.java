@@ -43,7 +43,7 @@ public class GameWaitRoom extends MainFrame {
 				waitingPlayerPanel.updateWaitingPlayerList(a);
 			}
 		});
-		t.start();
+//		t.start();
 	}
 
 	// Test Drive //

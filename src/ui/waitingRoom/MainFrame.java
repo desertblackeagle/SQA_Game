@@ -1,4 +1,4 @@
-package ui;
+package ui.waitingRoom;
 
 import javax.swing.JFrame;
 

@@ -1,4 +1,4 @@
-package ui;
+package ui.waitingRoom;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package ui;
+package ui.waitingRoom;
 
 public class GameWaitRoomTest {
 

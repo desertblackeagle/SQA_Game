@@ -1,11 +1,11 @@
-package ui.waitingRoom;
+package ui;
 
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
 	public MainFrame() {
 		// TODO Auto-generated constructor stub
-		setSize(1500, 800);
+		setSize(1500, 900);
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);

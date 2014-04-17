@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import ui.MainFrame;
+
 public class GameWaitRoom extends MainFrame {
 	private JLabel waitingRoomLabel, background;
 	private WaitingPlayerJPanel waitingPlayerPanel;
@@ -21,7 +23,7 @@ public class GameWaitRoom extends MainFrame {
 		initJButton();
 		initBackground();
 		initBound();
-		setComponentFont();
+		setComponentFont();      
 		revalidate();
 		repaint();
 		testDrive();

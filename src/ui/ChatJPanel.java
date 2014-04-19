@@ -64,7 +64,7 @@ public class ChatJPanel extends JPanel {
 	// init Component end //
 
 	// API //
-
+	
 	public void appendChatArea(String chatString) {
 		chatTextArea.append(chatString.replace('\n', ' ') + "\n");
 	}

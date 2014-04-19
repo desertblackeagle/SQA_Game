@@ -13,14 +13,15 @@ public class TaiwanChessBoard extends JPanel {
 	int gridLength;
 	int weightFromPanelEdge, heightFromPanelEdge;
 
-	public TaiwanChessBoard(int weight, int height) {
+	public TaiwanChessBoard(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
-		setSize(weight, height);
-		allocationSpace(weight, height);
+		setSize(width, height);
+		setLocation(locationX, locationY);
+		allocationSpace(width, height);
 	}
 
-	private void allocationSpace(int weight, int height) {
-		gridLength = Math.min(height / 4, weight / 9);
+	private void allocationSpace(int width, int height) {
+		gridLength = Math.min(height / 4, width / 9);
 		weightFromPanelEdge = (getWidth() - 9 * gridLength) / 2;
 		heightFromPanelEdge = (getHeight() - 4 * gridLength) / 2;
 	}
@@ -56,8 +57,7 @@ public class TaiwanChessBoard extends JPanel {
 		f.setLayout(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(900, 920);
-		TaiwanChessBoard ccb = new TaiwanChessBoard(800, 800);
-		ccb.setBounds(10, 10, 800, 800);
+		TaiwanChessBoard ccb = new TaiwanChessBoard(10, 10, 800, 800);
 		f.add(ccb);
 	}
 

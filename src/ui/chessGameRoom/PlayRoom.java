@@ -1,6 +1,9 @@
 package ui.chessGameRoom;
 
+import java.awt.Font;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import ui.ChatJPanel;
@@ -10,19 +13,33 @@ public class PlayRoom extends MainFrame {
 	private JLabel background;
 	private PlayerInfoJPanel playerInfo;
 	private TaiwanChessBoard chessBoard;
-	ChatJPanel f;
+	private ChatJPanel chatArea;
+	private JButton backWatitingRoomBtn, readyBtn;
 
 	public PlayRoom() {
 		// TODO Auto-generated constructor stub
 		initChessBoard();
 		initJPanel();
-		f = new ChatJPanel(getWidth() - (getWidth() - 100)/3, 300, (getWidth() - 150) / 3, 500);
-		add(f);
+		initJButton();
+
 		initBackground();
 		initBound();
 		initLocation();
+		setComponentFont();
 		revalidate();
 		repaint();
+	}
+
+	private void setComponentFont() {
+		backWatitingRoomBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		readyBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+	}
+	
+	private void initJButton() {
+		backWatitingRoomBtn = new JButton("回到大廳");
+		add(backWatitingRoomBtn);
+		readyBtn = new JButton("Ready");
+		add(readyBtn);
 	}
 
 	private void initBackground() {
@@ -31,22 +48,25 @@ public class PlayRoom extends MainFrame {
 	}
 
 	private void initJPanel() {
-		playerInfo = new PlayerInfoJPanel((getWidth() - 150) * 2 / 3, 200);
+		playerInfo = new PlayerInfoJPanel(50, 620, (getWidth() - 150) * 2 / 3, 200);
 		add(playerInfo);
+		chatArea = new ChatJPanel(getWidth() - (getWidth() - 100) / 3, 300, (getWidth() - 150) / 3, 520);
+		add(chatArea);
 	}
 
 	private void initChessBoard() {
-		chessBoard = new TaiwanChessBoard((getWidth() - 150) * 2 / 3, 420);
+		chessBoard = new TaiwanChessBoard(50, 185, (getWidth() - 150) * 2 / 3, 420);
 		add(chessBoard);
 	}
 
 	private void initBound() {
 		background.setBounds(0, 0, this.getWidth(), this.getHeight());
+		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - 100) / 3, 185, 150, 80);
+		readyBtn.setBounds(getWidth() - 170, 185, 150, 80);
 	}
 
 	private void initLocation() {
-		chessBoard.setLocation(50, 185);
-		playerInfo.setLocation(50, 620);
+//		chessBoard.setLocation(50, 185);
 	}
 
 	public static void main(String[] args) {

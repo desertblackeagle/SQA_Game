@@ -27,7 +27,6 @@ public class ChineseChessBoard extends JPanel {
 	}
 
 	private void drawBoardWeight(Graphics g) {
-//		System.out.println(gridLength + " " + weightFromPanelEdge + " " + heightFromPanelEdge);
 		for (int i = 0; i <= 10; i++) {
 			((Graphics2D) g).drawLine(weightFromPanelEdge, heightFromPanelEdge + gridLength * i, weightFromPanelEdge + gridLength * 8, heightFromPanelEdge + gridLength * i);
 		}

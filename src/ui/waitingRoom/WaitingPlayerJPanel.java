@@ -58,7 +58,7 @@ public class WaitingPlayerJPanel extends JPanel {
 					selectedPlayer = selectedItem;
 					// call waitingPlayerInfoPanel to display player info
 					waitingPlayerInfoPanel.updateWaitingPlayerInfo("10", "20", "1");
-					waitingPlayerInfoPanel.updateWaitingPlayerPhoto(new ImageIcon("c:/testPlayer.jpg"));
+					waitingPlayerInfoPanel.updateWaitingPlayerPhoto(new ImageIcon("c:/sqa/testPlayer.jpg"));
 					waitingPlayerInfoPanel.setSelectedPlayer(selectedItem);
 				}
 			}

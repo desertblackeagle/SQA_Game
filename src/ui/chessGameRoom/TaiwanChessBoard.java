@@ -38,7 +38,7 @@ public class TaiwanChessBoard extends JPanel {
 	}
 
 	protected void paintComponent(Graphics g) {
-		ImageIcon icon = new ImageIcon("c:/b.jpg");
+		ImageIcon icon = new ImageIcon("c:/sqa/b.jpg");
 		Image img = icon.getImage();
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 

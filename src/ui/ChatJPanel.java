@@ -1,4 +1,4 @@
-package ui.waitingRoom;
+package ui;
 
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class WaitingRoomChatJPanel extends JPanel {
+public class ChatJPanel extends JPanel {
 	private JTextArea chatInputArea, chatTextArea;
 	private JScrollPane chatScrollPanel;
 
-	public WaitingRoomChatJPanel(int locationX, int locationY, int width, int height) {
+	public ChatJPanel(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
 		setSize(width, height);
 		setLocation(locationX, locationY);

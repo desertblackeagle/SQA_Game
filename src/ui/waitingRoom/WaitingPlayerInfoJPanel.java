@@ -39,7 +39,7 @@ public class WaitingPlayerInfoJPanel extends JPanel {
 	}
 
 	private void initImageIcon() {
-		noPlayerImageIcon = new ImageIcon("c:/noplayer.jpg");
+		noPlayerImageIcon = new ImageIcon("c:/sqa/noplayer.jpg");
 	}
 
 	private void initJLabel() {

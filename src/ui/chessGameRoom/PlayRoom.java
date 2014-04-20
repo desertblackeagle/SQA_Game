@@ -30,6 +30,8 @@ public class PlayRoom extends MainFrame {
 		repaint();
 	}
 
+	// init Component //
+	
 	private void setComponentFont() {
 		backWatitingRoomBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		readyBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
@@ -50,25 +52,27 @@ public class PlayRoom extends MainFrame {
 	private void initJPanel() {
 		playerInfo = new PlayerInfoJPanel(50, 620, (getWidth() - 150) * 2 / 3, 200);
 		add(playerInfo);
-		chatArea = new ChatJPanel(getWidth() - (getWidth() - 100) / 3, 300, (getWidth() - 150) / 3, 520);
+		chatArea = new ChatJPanel(getWidth() - (getWidth() - 30) / 3, 300, (getWidth() - 175) / 3, 520);
 		add(chatArea);
 	}
 
 	private void initChessBoard() {
-		chessBoard = new TaiwanChessBoard(50, 185, (getWidth() - 150) * 2 / 3, 420);
+		chessBoard = new TaiwanChessBoard(50, 140, (getWidth() - 150) * 2 / 3, 450);
 		add(chessBoard);
 	}
 
 	private void initBound() {
 		background.setBounds(0, 0, this.getWidth(), this.getHeight());
-		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - 100) / 3, 185, 150, 80);
-		readyBtn.setBounds(getWidth() - 170, 185, 150, 80);
+		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - 30) / 3, 140, 150, 80);
+		readyBtn.setBounds(getWidth() - 200, 140, 150, 80);
 	}
 
 	private void initLocation() {
 //		chessBoard.setLocation(50, 185);
 	}
-
+	
+	// init Component end //
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PlayRoom p = new PlayRoom();

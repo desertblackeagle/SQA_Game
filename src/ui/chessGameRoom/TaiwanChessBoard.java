@@ -21,19 +21,19 @@ public class TaiwanChessBoard extends JPanel {
 	}
 
 	private void allocationSpace(int width, int height) {
-		gridLength = Math.min(height / 4, width / 9);
-		weightFromPanelEdge = (getWidth() - 9 * gridLength) / 2;
+		gridLength = Math.min(height / 4, width / 8);
+		weightFromPanelEdge = (getWidth() - 8 * gridLength) / 2;
 		heightFromPanelEdge = (getHeight() - 4 * gridLength) / 2;
 	}
 
 	private void drawBoardWeight(Graphics g) {
 		for (int i = 0; i < 5; i++) {
-			((Graphics2D) g).drawLine(weightFromPanelEdge, heightFromPanelEdge + gridLength * i, weightFromPanelEdge + gridLength * 9, heightFromPanelEdge + gridLength * i);
+			((Graphics2D) g).drawLine(weightFromPanelEdge, heightFromPanelEdge + gridLength * i, weightFromPanelEdge + gridLength * 8, heightFromPanelEdge + gridLength * i);
 		}
 	}
 
 	private void drawBoardHeight(Graphics g) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 9; i++) {
 			((Graphics2D) g).drawLine(weightFromPanelEdge + gridLength * i, heightFromPanelEdge, weightFromPanelEdge + gridLength * i, heightFromPanelEdge + gridLength * 4);
 		}
 	}

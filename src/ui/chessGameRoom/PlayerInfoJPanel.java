@@ -26,6 +26,8 @@ public class PlayerInfoJPanel extends JPanel {
 		setComponentFont();
 	}
 
+	// init Component //
+	
 	private void setComponentFont() {
 		playerAScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
 		playerBScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
@@ -76,8 +78,8 @@ public class PlayerInfoJPanel extends JPanel {
 	}
 
 	private void initBound() {
-		playerAScore.setBounds(getWidth() / 2 - 100, 50, 100, 50);
-		playerBScore.setBounds(getWidth() / 2, 50, 100, 50);
+		playerAScore.setBounds(getWidth() / 2 - 175, 75, 100, 50);
+		playerBScore.setBounds(getWidth() / 2 + 75, 75, 100, 50);
 		forWhoToPlay.setBounds(getWidth() / 2 - 100, 0, 200, 50);
 		playerAName.setBounds((getWidth() - 20) / 4, getHeight() - 50, 200, 50);
 		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - 200, getHeight() - 50, 200, 50);
@@ -87,7 +89,9 @@ public class PlayerInfoJPanel extends JPanel {
 		playerAPhoto.setLocation(0, 0);
 		playerBPhoto.setLocation(getWidth() - (getWidth() - 20) / 4, 0);
 	}
-
+	
+	// init Component end //
+	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
 //		JFrame f = new JFrame();

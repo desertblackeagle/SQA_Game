@@ -29,11 +29,11 @@ public class PlayerInfoJPanel extends JPanel {
 	// init Component //
 	
 	private void setComponentFont() {
-		playerAScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerBScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		forWhoToPlay.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerAName.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerBName.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
+		playerAScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35 *4/5));
+		playerBScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35 *4/5));
+		forWhoToPlay.setFont(new Font(Font.DIALOG, Font.BOLD, 35 *4/5));
+		playerAName.setFont(new Font(Font.DIALOG, Font.BOLD, 35 *4/5));
+		playerBName.setFont(new Font(Font.DIALOG, Font.BOLD, 35 *4/5));
 	}
 
 	private void initImageIcon() {
@@ -52,7 +52,7 @@ public class PlayerInfoJPanel extends JPanel {
 
 		playerAPhoto = new JLabel();
 		playerAPhoto.setSize((getWidth() - 20) / 4, (getWidth() - 20) / 4);
-		defaultPlayerAPhoto.setImage(defaultPlayerAPhoto.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));
+		defaultPlayerAPhoto.setImage(defaultPlayerAPhoto.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
 		playerAPhoto.setIcon(defaultPlayerAPhoto);
 		add(playerAPhoto);
 
@@ -76,13 +76,13 @@ public class PlayerInfoJPanel extends JPanel {
 		playerBName.setOpaque(true);
 		add(playerBName);
 	}
-
-	private void initBound() {
-		playerAScore.setBounds(getWidth() / 2 - 175, 75, 100, 50);
-		playerBScore.setBounds(getWidth() / 2 + 75, 75, 100, 50);
-		forWhoToPlay.setBounds(getWidth() / 2 - 100, 0, 200, 50);
-		playerAName.setBounds((getWidth() - 20) / 4, getHeight() - 50, 200, 50);
-		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - 200, getHeight() - 50, 200, 50);
+		 
+	private void initBound() { 
+		playerAScore.setBounds(getWidth() / 2 - 175 *4/5, 75 *4/5, 100 *4/5, 50 *4/5);
+		playerBScore.setBounds(getWidth() / 2 + 75 *4/5, 75 *4/5, 100 *4/5, 50 *4/5);
+		forWhoToPlay.setBounds(getWidth() / 2 - 100 *4/5, 0 *4/5, 200 *4/5, 50 *4/5);
+		playerAName.setBounds((getWidth() - 20) / 4 *4/5, getHeight() - 50 *4/5, 200 *4/5, 50 *4/5);
+		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - 200 *4/5, getHeight() - 50 *4/5, 200 *4/5, 50 *4/5);
 	}
 
 	private void initLocation() {

@@ -41,30 +41,30 @@ public class PlayRoom extends MainFrame {
 		backWatitingRoomBtn = new JButton("回到大廳");
 		add(backWatitingRoomBtn);
 		readyBtn = new JButton("Ready");
-		add(readyBtn);
+		add(readyBtn);//add到PlayRoom
 	}
 
 	private void initBackground() {
-		background = new JLabel(new ImageIcon("c:/sqa/04.png"));
+		background = new JLabel(new ImageIcon("c:/sqa/04.png"));//加入背景圖片
 		add(background);
 	}
-
+	//設定Panel
 	private void initJPanel() {
-		playerInfo = new PlayerInfoJPanel(50, 620, (getWidth() - 150) * 2 / 3, 200);
+		playerInfo = new PlayerInfoJPanel(getWidth() /30, getHeight() /90 *62, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /9 *2);
 		add(playerInfo);
-		chatArea = new ChatJPanel(getWidth() - (getWidth() - 30) / 3, 300, (getWidth() - 175) / 3, 520);
+		chatArea = new ChatJPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52);
 		add(chatArea);
 	}
 
 	private void initChessBoard() {
-		chessBoard = new TaiwanChessBoard(50, 140, (getWidth() - 150) * 2 / 3, 450);
+		chessBoard = new TaiwanChessBoard(getWidth() /30, getHeight() /90 *14, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /2);
 		add(chessBoard);
 	}
 
 	private void initBound() {
 		background.setBounds(0, 0, this.getWidth(), this.getHeight());
-		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - 30) / 3, 140, 150, 80);
-		readyBtn.setBounds(getWidth() - 200, 140, 150, 80);
+		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - getWidth() / 50) / 3, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
+		readyBtn.setBounds(getWidth() - getWidth() /15 *2, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
 	}
 
 	private void initLocation() {

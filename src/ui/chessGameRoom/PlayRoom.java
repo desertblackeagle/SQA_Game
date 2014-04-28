@@ -1,6 +1,9 @@
 package ui.chessGameRoom;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,7 +17,8 @@ public class PlayRoom extends MainFrame {
 	private PlayerInfoJPanel playerInfo;
 	private TaiwanChessBoard chessBoard;
 	private ChatJPanel chatArea;
-	private JButton backWatitingRoomBtn, readyBtn;
+	private JButton leaveBtn, readyBtn;
+	private ImageIcon backgroundPhoto;
 
 	public PlayRoom() {
 		// TODO Auto-generated constructor stub
@@ -33,19 +37,29 @@ public class PlayRoom extends MainFrame {
 	// init Component //
 	
 	private void setComponentFont() {
-		backWatitingRoomBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
-		readyBtn.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		leaveBtn.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()/40));
+		//readyBtn.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()/40));
 	}
 	
 	private void initJButton() {
-		backWatitingRoomBtn = new JButton("回到大廳");
-		add(backWatitingRoomBtn);
-		readyBtn = new JButton("Ready");
-		add(readyBtn);//add到PlayRoom
+		leaveBtn = new JButton("離開");
+		leaveBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
+		add(leaveBtn);
+//		readyBtn = new JButton("Ready");
+//		add(readyBtn);//add到PlayRoom
 	}
 
-	private void initBackground() {
-		background = new JLabel(new ImageIcon("c:/sqa/04.png"));//加入背景圖片
+	private void initBackground() { //加入背景圖片
+		backgroundPhoto = new ImageIcon("c:/sqa/04.png");
+		background = new JLabel();
+		backgroundPhoto.setImage(backgroundPhoto.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
+		background.setIcon(backgroundPhoto);
 		add(background);
 	}
 	//設定Panel
@@ -63,8 +77,8 @@ public class PlayRoom extends MainFrame {
 
 	private void initBound() {
 		background.setBounds(0, 0, this.getWidth(), this.getHeight());
-		backWatitingRoomBtn.setBounds(getWidth() - (getWidth() - getWidth() / 50) / 3, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
-		readyBtn.setBounds(getWidth() - getWidth() /15 *2, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
+		leaveBtn.setBounds(getWidth() - (getWidth() - getWidth() / 50) / 3, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
+//		readyBtn.setBounds(getWidth() - getWidth() /15 *2, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
 	}
 
 	private void initLocation() {

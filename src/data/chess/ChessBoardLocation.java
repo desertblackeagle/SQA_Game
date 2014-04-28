@@ -24,8 +24,8 @@ public class ChessBoardLocation {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 8; j++) {
 				location[i][j] = new Point();
-				location[i][j].x = widthFromPanelEdge + j * gridLength + gridLength / 9;
-				location[i][j].y = heightFromPanelEdge + i * gridLength + gridLength / 15;
+				location[i][j].x = widthFromPanelEdge + j * gridLength + gridLength / 16;
+				location[i][j].y = heightFromPanelEdge + i * gridLength + gridLength / 20;
 			}
 		}
 

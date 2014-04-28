@@ -98,8 +98,9 @@ public class PlayRoom extends MainFrame {
 
 	private void initBound() {
 		background.setBounds(0, 0, this.getWidth(), this.getHeight());
-		leaveBtn.setBounds(getWidth() - (getWidth() - getWidth() / 50) / 3, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
+//		leaveBtn.setBounds(getWidth() - (getWidth() - getWidth() / 50) / 3, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
 //		readyBtn.setBounds(getWidth() - getWidth() /15 *2, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
+		leaveBtn.setBounds(getWidth() - getWidth() /15 *2, getHeight() /90 *14, getWidth() /10, getHeight() /90 *8);
 	}
 
 	private void initLocation() {

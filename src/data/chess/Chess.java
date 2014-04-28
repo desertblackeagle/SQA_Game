@@ -27,7 +27,7 @@ public class Chess extends JComponent {
 		this.grid = grid;
 		this.path = path;
 		setBounds(((int) point.getX()), ((int) point.getY()), 60, 60);
-		setBounds(((int) point.getX()), ((int) point.getY()), grid * 4 / 5, grid * 4 / 5);
+		setBounds(((int) point.getX()), ((int) point.getY()), grid, grid);
 		setBackground(Color.black);
 	}
 
@@ -35,7 +35,7 @@ public class Chess extends JComponent {
 		g.setColor(new Color(227, 33, 34));
 		icon = new ImageIcon(path);
 		img = icon.getImage();
-		g.drawImage(img, 0, 0, grid * 4 / 5, grid * 4 / 5, this);
+		g.drawImage(img, 0, 0, grid * 8 / 9, grid * 8 / 9, this);
 	}
 
 	public void goBack() {

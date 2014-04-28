@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 public class PlayerInfoJPanel extends JPanel {
 
 	private JLabel playerAScore, playerBScore, playerAPhoto, playerBPhoto, forWhoToPlay, playerAName, playerBName;
@@ -62,7 +63,7 @@ public class PlayerInfoJPanel extends JPanel {
 		playerBPhoto.setIcon(defaultPlayerBPhoto);
 		add(playerBPhoto);
 
-		forWhoToPlay = new JLabel("----------------");
+		forWhoToPlay = new JLabel("輪到你了");
 		forWhoToPlay.setForeground(Color.red);
 		add(forWhoToPlay);
 
@@ -80,7 +81,7 @@ public class PlayerInfoJPanel extends JPanel {
 	private void initBound() { 
 		playerAScore.setBounds(getWidth() / 2 - getWidth()*9/45, getHeight()*2/5, getWidth()/10, getHeight()/4);
 		playerBScore.setBounds(getWidth() / 2 + getWidth()/10, getHeight()*2/5, getWidth()/10, getHeight()/4);
-		forWhoToPlay.setBounds(getWidth() / 2 - getWidth()/10, 0, getWidth()/4, getHeight()/4);
+		forWhoToPlay.setBounds(getWidth() / 2 - getWidth()/13, 0, getWidth()/4, getHeight()/4);
 		playerAName.setBounds((getWidth() - 20) / 4 , getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
 		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - getWidth()/5, getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
 	}
@@ -94,7 +95,38 @@ public class PlayerInfoJPanel extends JPanel {
 	
 	// API//
 	
+	public void setplayerAName(String name) {
+		this.playerAName.setText(name);
+	}
 	
+	public void setplayerBName(String name) {
+		this.playerBName.setText(name);
+	}
+	
+	public void playerAScore(String score) {
+		this.playerAScore.setText(score);
+	}
+	
+	public void playerBScore(String score) {
+		this.playerAScore.setText(score);
+	}
+	
+	public void changePlay() {
+		if (forWhoToPlay.getText().equals("輪到你了")) {
+			forWhoToPlay.setText("等待對方");
+		} else {
+			forWhoToPlay.setText("輪到你了");
+		}
+	}
+	
+	public void setPlayerAPhoto(ImageIcon photo) {
+		photo.setImage(photo.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));
+		playerAPhoto.setIcon(photo);
+	}
+	public void setPlayerBPhoto(ImageIcon photo) {
+		photo.setImage(photo.getImage().getScaledInstance(playerBPhoto.getWidth(), playerBPhoto.getHeight(), Image.SCALE_DEFAULT));
+		playerBPhoto.setIcon(photo);
+	}
 	
 	// API end //
 	

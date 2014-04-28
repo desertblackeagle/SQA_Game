@@ -4,13 +4,16 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import control.GameObservable;
 import ui.ChatJPanel;
 import ui.MainFrame;
+
 
 public class PlayRoom extends MainFrame {
 	private JLabel background;
@@ -19,9 +22,12 @@ public class PlayRoom extends MainFrame {
 	private ChatJPanel chatArea;
 	private JButton leaveBtn, readyBtn;
 	private ImageIcon backgroundPhoto;
+	private GameObservable obs;
 
 	public PlayRoom() {
 		// TODO Auto-generated constructor stub
+		obs = new GameObservable();
+		
 		initChessBoard();
 		initJPanel();
 		initJButton();
@@ -32,8 +38,23 @@ public class PlayRoom extends MainFrame {
 		setComponentFont();
 		revalidate();
 		repaint();
+		
+		revalidate();
+		repaint();
+		testDrive();
 	}
+	
+	private void testDrive() {
+		changePlay();
+		appendChatArea("Rose > Hello !");
 
+		setPlayerAPhoto(new ImageIcon("C:/sqa/wallpaper/Desert.jpg"));
+		setPlayerAInfoName("Rose");
+
+		setPlayerBPhoto(new ImageIcon("C:/sqa/wallpaper/Jellyfish.jpg"));
+		setPlayerBInfoName("God");
+	}
+	
 	// init Component //
 	
 	private void setComponentFont() {
@@ -86,10 +107,87 @@ public class PlayRoom extends MainFrame {
 	}
 	
 	// init Component end //
+
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PlayRoom p = new PlayRoom();
+	// API //
+
+	public void changePlay() {
+		playerInfo.changePlay();
 	}
 
+	public void appendChatArea(String chatString) {
+		chatArea.appendChatArea(chatString);
+	}
+
+	public void setPlayerAPhoto(ImageIcon photo) {
+		playerInfo.setPlayerAPhoto(photo);
+	}
+
+	public void setPlayerBPhoto(ImageIcon photo) {
+		playerInfo.setPlayerBPhoto(photo);
+	}
+	
+	public void setPlayerAInfoName(String name) {
+		chatArea.setLocalPlayerName(name);
+		playerInfo.setplayerAName(name);
+	}
+
+	public void setPlayerBInfoName(String name) {
+		playerInfo.setplayerBName(name);
+	}
+
+	public PlayerInfoJPanel getPlayerInfoJPanel() {
+		return playerInfo;
+	}
+
+	public ChatJPanel getChatPanel() {
+		return chatArea;
+	}
+
+	public TaiwanChessBoard getChessBoard() {
+		return chessBoard;
+	}
+
+	// observable //
+
+	public void setChanged() {
+		obs.setChanged();
+	}
+
+	public void addObserver(Observer observer) {
+		obs.addObserver(observer);
+	}
+
+	public int countObservers() {
+		return obs.countObservers();
+	}
+
+	public void deleteObserver(Observer observer) {
+		obs.deleteObserver(observer);
+	}
+
+	public void deleteObservers() {
+		obs.deleteObservers();
+	}
+
+	public void notifyObservers() {
+		obs.notifyObservers();
+	}
+
+	public void notifyObservers(Object o) {
+		obs.notifyObservers(o);
+	}
+
+	public void notifyObservers(Observer observer) {
+		obs.notifyObservers(observer);
+	}
+
+	// API end //
+	
+	
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		PlayRoom p = new PlayRoom();
+//	}
+	
 }

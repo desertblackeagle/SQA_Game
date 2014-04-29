@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 public class PlayerInfoJPanel extends JPanel {
 
 	private JLabel playerAScore, playerBScore, playerAPhoto, playerBPhoto, forWhoToPlay, playerAName, playerBName;
@@ -29,11 +30,11 @@ public class PlayerInfoJPanel extends JPanel {
 	// init Component //
 	
 	private void setComponentFont() {
-		playerAScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerBScore.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		forWhoToPlay.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerAName.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
-		playerBName.setFont(new Font(Font.DIALOG, Font.BOLD, 35));
+		playerAScore.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()*7/40));
+		playerBScore.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()*7/40));
+		forWhoToPlay.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()*7/40));
+		playerAName.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()*7/40));
+		playerBName.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()*7/40));
 	}
 
 	private void initImageIcon() {
@@ -52,7 +53,7 @@ public class PlayerInfoJPanel extends JPanel {
 
 		playerAPhoto = new JLabel();
 		playerAPhoto.setSize((getWidth() - 20) / 4, (getWidth() - 20) / 4);
-		defaultPlayerAPhoto.setImage(defaultPlayerAPhoto.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));
+		defaultPlayerAPhoto.setImage(defaultPlayerAPhoto.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
 		playerAPhoto.setIcon(defaultPlayerAPhoto);
 		add(playerAPhoto);
 
@@ -62,27 +63,27 @@ public class PlayerInfoJPanel extends JPanel {
 		playerBPhoto.setIcon(defaultPlayerBPhoto);
 		add(playerBPhoto);
 
-		forWhoToPlay = new JLabel("----------------");
+		forWhoToPlay = new JLabel("輪到你了");
 		forWhoToPlay.setForeground(Color.red);
 		add(forWhoToPlay);
 
 		playerAName = new JLabel("PlayerA");
-		playerAName.setBackground(Color.white);
+		playerAName.setBackground(Color.red);
 		playerAName.setOpaque(true);
 		add(playerAName);
 
 		playerBName = new JLabel("PlayerB", JLabel.RIGHT);
-		playerBName.setBackground(Color.white);
+		playerBName.setBackground(Color.red);
 		playerBName.setOpaque(true);
 		add(playerBName);
 	}
-
-	private void initBound() {
-		playerAScore.setBounds(getWidth() / 2 - 175, 75, 100, 50);
-		playerBScore.setBounds(getWidth() / 2 + 75, 75, 100, 50);
-		forWhoToPlay.setBounds(getWidth() / 2 - 100, 0, 200, 50);
-		playerAName.setBounds((getWidth() - 20) / 4, getHeight() - 50, 200, 50);
-		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - 200, getHeight() - 50, 200, 50);
+		 
+	private void initBound() { 
+		playerAScore.setBounds(getWidth() / 2 - getWidth()*9/45, getHeight()*2/5, getWidth()/10, getHeight()/4);
+		playerBScore.setBounds(getWidth() / 2 + getWidth()/10, getHeight()*2/5, getWidth()/10, getHeight()/4);
+		forWhoToPlay.setBounds(getWidth() / 2 - getWidth()/13, 0, getWidth()/4, getHeight()/4);
+		playerAName.setBounds((getWidth() - 20) / 4 , getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
+		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - getWidth()/5, getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
 	}
 
 	private void initLocation() {
@@ -91,6 +92,43 @@ public class PlayerInfoJPanel extends JPanel {
 	}
 	
 	// init Component end //
+	
+	// API//
+	
+	public void setplayerAName(String name) {
+		this.playerAName.setText(name);
+	}
+	
+	public void setplayerBName(String name) {
+		this.playerBName.setText(name);
+	}
+	
+	public void playerAScore(String score) {
+		this.playerAScore.setText(score);
+	}
+	
+	public void playerBScore(String score) {
+		this.playerAScore.setText(score);
+	}
+	
+	public void changePlay() {
+		if (forWhoToPlay.getText().equals("輪到你了")) {
+			forWhoToPlay.setText("等待對方");
+		} else {
+			forWhoToPlay.setText("輪到你了");
+		}
+	}
+	
+	public void setPlayerAPhoto(ImageIcon photo) {
+		photo.setImage(photo.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));
+		playerAPhoto.setIcon(photo);
+	}
+	public void setPlayerBPhoto(ImageIcon photo) {
+		photo.setImage(photo.getImage().getScaledInstance(playerBPhoto.getWidth(), playerBPhoto.getHeight(), Image.SCALE_DEFAULT));
+		playerBPhoto.setIcon(photo);
+	}
+	
+	// API end //
 	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub

@@ -32,7 +32,6 @@ public class TaiwanChessBoard extends JPanel implements MouseMotionListener, Mou
 		setLocation(locationX, locationY);
 		allocationSpace(width, height);
 		setLayout(null);
-
 		obs = new GameObservable();
 
 		chessBoardWidth = width;
@@ -69,7 +68,6 @@ public class TaiwanChessBoard extends JPanel implements MouseMotionListener, Mou
 		drawBoardWidth(g);
 		drawBoardHeight(g);
 	}
-	
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -129,6 +127,7 @@ public class TaiwanChessBoard extends JPanel implements MouseMotionListener, Mou
 		if (o instanceof ChessBox) {
 			if (arg instanceof ArrayList<?>) {
 				for (Chess chess : (ArrayList<Chess>) arg) {
+					System.out.println("add");
 					add(chess);
 					chess.addMouseListener(this);
 					chess.addMouseMotionListener(this);

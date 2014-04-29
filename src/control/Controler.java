@@ -9,6 +9,7 @@ public class Controler {
 	}
 
 	public TransferAbsoluteToXY getTransferAbsoluteToXY() {
+		System.out.println("123");
 		return transferAbsoluteToXY;
 	}
 

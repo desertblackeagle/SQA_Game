@@ -2,8 +2,10 @@ package control;
 
 import java.util.Observable;
 import java.util.Observer;
-
-public class GameObservable extends Observable {
+/*
+ * for chess board
+ */
+public class ChessGameObservable extends Observable {
 
 	public void setChanged() {
 		super.setChanged();

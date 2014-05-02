@@ -10,13 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-public class ChatJPanel extends JPanel {
+public class ChatPanel extends JPanel {
 	
 	private JTextArea chatInputArea, chatTextArea;
 	private JScrollPane chatScrollPanel;
 	private String localPlayerName = "";
 
-	public ChatJPanel(int locationX, int locationY, int width, int height) {
+	public ChatPanel(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
 		setSize(width, height);
 		setLocation(locationX, locationY);

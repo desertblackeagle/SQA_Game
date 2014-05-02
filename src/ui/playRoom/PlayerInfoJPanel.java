@@ -1,4 +1,4 @@
-package ui.chessGameRoom;
+package ui.playRoom;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,11 +8,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import data.player.Player;
+
 
 public class PlayerInfoJPanel extends JPanel {
 
 	private JLabel playerAScore, playerBScore, playerAPhoto, playerBPhoto, forWhoToPlay, playerAName, playerBName;
 	private ImageIcon defaultPlayerAPhoto, defaultPlayerBPhoto;
+	private Player playerA, playerB;
 
 	public PlayerInfoJPanel(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
@@ -21,6 +24,7 @@ public class PlayerInfoJPanel extends JPanel {
 		setLayout(null);
 		setOpaque(false);
 		initImageIcon();
+		initPlayer();
 		initJLabel();
 		initBound();
 		initLocation();
@@ -38,52 +42,57 @@ public class PlayerInfoJPanel extends JPanel {
 	}
 
 	private void initImageIcon() {
-		defaultPlayerAPhoto = new ImageIcon("c:/sqa/playerAPhoto.jpg");
-		defaultPlayerBPhoto = new ImageIcon("c:/sqa/playerBPhoto.jpg");
+		defaultPlayerAPhoto = new ImageIcon(getClass().getResource("/Image/playerAPhoto.jpg"));
+		defaultPlayerBPhoto = new ImageIcon(getClass().getResource("/Image/playerBPhoto.jpg"));
 	}
-
+	
+	private void initPlayer() {
+		playerA = new Player("playerA", defaultPlayerAPhoto, -1, 0);
+		playerB = new Player("playerB", defaultPlayerBPhoto, -1, 0);
+	}
+	
 	private void initJLabel() {
-		playerAScore = new JLabel("0分");
+		playerAScore = new JLabel(playerA.getScore() + "分");
 		playerAScore.setForeground(Color.red);
 		add(playerAScore);
 
-		playerBScore = new JLabel("0分", JLabel.RIGHT);
+		playerBScore = new JLabel(playerB.getScore() + "分", JLabel.RIGHT);
 		playerBScore.setForeground(Color.red);
 		add(playerBScore);
 
 		playerAPhoto = new JLabel();
 		playerAPhoto.setSize((getWidth() - 20) / 4, (getWidth() - 20) / 4);
-		defaultPlayerAPhoto.setImage(defaultPlayerAPhoto.getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
-		playerAPhoto.setIcon(defaultPlayerAPhoto);
+		playerA.getPhoto().setImage(playerA.getPhoto().getImage().getScaledInstance(playerAPhoto.getWidth(), playerAPhoto.getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
+		playerAPhoto.setIcon(playerA.getPhoto());
 		add(playerAPhoto);
 
 		playerBPhoto = new JLabel();
 		playerBPhoto.setSize((getWidth() - 20) / 4, (getWidth() - 20) / 4);
-		defaultPlayerBPhoto.setImage(defaultPlayerBPhoto.getImage().getScaledInstance(playerBPhoto.getWidth(), playerBPhoto.getHeight(), Image.SCALE_DEFAULT));
-		playerBPhoto.setIcon(defaultPlayerBPhoto);
+		playerB.getPhoto().setImage(playerB.getPhoto().getImage().getScaledInstance(playerBPhoto.getWidth(), playerBPhoto.getHeight(), Image.SCALE_DEFAULT));
+		playerBPhoto.setIcon(playerB.getPhoto());
 		add(playerBPhoto);
 
 		forWhoToPlay = new JLabel("輪到你了");
 		forWhoToPlay.setForeground(Color.red);
 		add(forWhoToPlay);
 
-		playerAName = new JLabel("PlayerA");
+		playerAName = new JLabel(playerA.getName());
 		playerAName.setBackground(Color.red);
 		playerAName.setOpaque(true);
 		add(playerAName);
 
-		playerBName = new JLabel("PlayerB", JLabel.RIGHT);
+		playerBName = new JLabel(playerB.getName(), JLabel.RIGHT);
 		playerBName.setBackground(Color.red);
 		playerBName.setOpaque(true);
 		add(playerBName);
 	}
 		 
 	private void initBound() { 
-		playerAScore.setBounds(getWidth() / 2 - getWidth()*9/45, getHeight()*2/5, getWidth()/10, getHeight()/4);
-		playerBScore.setBounds(getWidth() / 2 + getWidth()/10, getHeight()*2/5, getWidth()/10, getHeight()/4);
-		forWhoToPlay.setBounds(getWidth() / 2 - getWidth()/13, 0, getWidth()/4, getHeight()/4);
-		playerAName.setBounds((getWidth() - 20) / 4 , getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
-		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - getWidth()/5, getHeight() - getHeight()/4, getWidth()/5, getHeight()/4);
+		playerAScore.setBounds(getWidth() / 2 - getWidth() * 9 / 45, getHeight() * 2 / 5, getWidth() / 10, getHeight() / 4);
+		playerBScore.setBounds(getWidth() / 2 + getWidth() / 10, getHeight() * 2 / 5, getWidth() / 10, getHeight() / 4);
+		forWhoToPlay.setBounds(getWidth() / 2 - getWidth() / 13, 0, getWidth() / 4, getHeight() / 4);
+		playerAName.setBounds((getWidth() - 20) / 4 , getHeight() - getHeight() / 4, getWidth() / 5, getHeight() / 4);
+		playerBName.setBounds(getWidth() - (getWidth() - 20) / 4 - getWidth() / 5, getHeight() - getHeight() / 4, getWidth() / 5, getHeight() / 4);
 	}
 
 	private void initLocation() {

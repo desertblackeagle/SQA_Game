@@ -1,31 +1,29 @@
 package data;
 
-import data.chess.ChessBoardLocation;
-import data.chess.ChessBox;
-import data.chess.ChessXYLocOnChessBoard;
+import control.observer.ChessPieceCoordinate;
+import data.chessPiece.ChessPieceList;
+import data.chessPiece.ChessPieceLocation;
 
 public class MainData {
-	private ChessBoardLocation chessBoardLoc;
-	private ChessBox chessBox;
-	private ChessXYLocOnChessBoard chessXYLoc;
+	private ChessPieceLocation chessBoardLoc;
+	private ChessPieceList chessPieceList;
+	
 
 	public MainData(int width, int height) {
 		// TODO Auto-generated constructor stub
-		chessBoardLoc = new ChessBoardLocation(width, height);
-		chessBox = new ChessBox(chessBoardLoc);
-		chessXYLoc = new ChessXYLocOnChessBoard();
+		chessBoardLoc = new ChessPieceLocation(width, height);
+		chessPieceList = new ChessPieceList(chessBoardLoc);
+		
 	}
 
-	public ChessBoardLocation getChessBoardLoc() {
+	public ChessPieceLocation getChessBoardLoc() {
 		return chessBoardLoc;
 	}
 
-	public ChessBox getChessBox() {
-		return chessBox;
+	public ChessPieceList getChessPieceList() {
+		return chessPieceList;
 	}
 
-	public ChessXYLocOnChessBoard getChessXYLoc() {
-		return chessXYLoc;
-	}
+	
 
 }

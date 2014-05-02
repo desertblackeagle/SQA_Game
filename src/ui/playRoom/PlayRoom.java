@@ -1,4 +1,4 @@
-package ui.chessGameRoom;
+package ui.playRoom;
 
 import java.awt.Font;
 import java.awt.Image;
@@ -10,23 +10,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import control.GameObservable;
-import ui.ChatJPanel;
+import control.ChessGameObservable;
+import control.observer.ChessBoard;
+import ui.ChatPanel;
 import ui.MainFrame;
 
 
 public class PlayRoom extends MainFrame {
 	private JLabel background;
 	private PlayerInfoJPanel playerInfo;
-	private TaiwanChessBoard chessBoard;
-	private ChatJPanel chatArea;
+	private ChessBoard chessBoard;
+	private ChatPanel chatArea;
 	private JButton leaveBtn, readyBtn;
 	private ImageIcon backgroundPhoto;
-	private GameObservable obs;
+	private ChessGameObservable obs;
 
 	public PlayRoom() {
 		// TODO Auto-generated constructor stub
-		obs = new GameObservable();
+		obs = new ChessGameObservable();
 		
 		initChessBoard();
 		initJPanel();
@@ -77,7 +78,7 @@ public class PlayRoom extends MainFrame {
 	}
 
 	private void initBackground() { //加入背景圖片
-		backgroundPhoto = new ImageIcon("c:/sqa/04.png");
+		backgroundPhoto = new ImageIcon(getClass().getResource("/Image/04.png"));
 		background = new JLabel();
 		backgroundPhoto.setImage(backgroundPhoto.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));//設定圖片的顯示
 		background.setIcon(backgroundPhoto);
@@ -87,12 +88,13 @@ public class PlayRoom extends MainFrame {
 	private void initJPanel() {
 		playerInfo = new PlayerInfoJPanel(getWidth() /30, getHeight() /90 *62, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /9 *2);
 		add(playerInfo);
-		chatArea = new ChatJPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52);
+		chatArea = new ChatPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52);
 		add(chatArea);
 	}
 
 	private void initChessBoard() {
-		chessBoard = new TaiwanChessBoard(getWidth() /30, getHeight() /90 *14, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /2);
+		chessBoard = new ChessBoard((getWidth() - getWidth() /10) * 2 / 3, getHeight() /2);
+		chessBoard.setLocation(getWidth() /30, getHeight() /90 *14);
 		add(chessBoard);
 	}
 
@@ -141,11 +143,11 @@ public class PlayRoom extends MainFrame {
 		return playerInfo;
 	}
 
-	public ChatJPanel getChatPanel() {
+	public ChatPanel getChatPanel() {
 		return chatArea;
 	}
 
-	public TaiwanChessBoard getChessBoard() {
+	public ChessBoard getChessBoard() {
 		return chessBoard;
 	}
 

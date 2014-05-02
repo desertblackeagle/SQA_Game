@@ -8,13 +8,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import ui.ChatJPanel;
+import ui.ChatPanel;
 import ui.MainFrame;
 
 public class GameWaitRoom extends MainFrame {
 	private JLabel waitingRoomLabel, background;
 	private WaitingPlayerJPanel waitingPlayerPanel;
-	private ChatJPanel waitingRoomChatJPanel;
+	private ChatPanel waitingRoomChatJPanel;
 	private JButton leave;
 
 	public GameWaitRoom() {
@@ -106,7 +106,7 @@ public class GameWaitRoom extends MainFrame {
 		waitingPlayerPanel.setOpaque(false);
 		add(waitingPlayerPanel);
 
-		waitingRoomChatJPanel = new ChatJPanel(100 + waitingPlayerPanel.getWidth(), 75, remainSpaceX * 1 / 3, 600);
+		waitingRoomChatJPanel = new ChatPanel(100 + waitingPlayerPanel.getWidth(), 75, remainSpaceX * 1 / 3, 600);
 		waitingRoomChatJPanel.setOpaque(false);
 		add(waitingRoomChatJPanel);
 	}

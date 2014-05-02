@@ -1,4 +1,4 @@
-package data.chess;
+package data.chessPiece;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,23 +8,24 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-public class Chess extends JComponent {
+public class ChessPiece extends JComponent {
 	private String path = "", chessName = "";
 	private ImageIcon icon;
 	private Image img;
-	private int grid;
+	private int grid, color;
 	private boolean dead = false;
 	private boolean cover = true;
-	private int chessLocX, chessLocY;
-	private ChessBoardLocation chessBoardLoc;
+	private int chessCoorX, chessCoorY;
+	private ChessPieceLocation chessBoardLoc;
 
-	public Chess(Point point, int chessLocX, int chessLocY, int grid, String path, String chessName, ChessBoardLocation chessBoardLoc) {
+	public ChessPiece(Point point, int chessCoorX, int chessCoorY,int color, int grid, String path, String chessName, ChessPieceLocation chessBoardLoc) {
 		// TODO Auto-generated constructor stub
 		this.chessBoardLoc = chessBoardLoc;
 		this.chessName = chessName;
-		this.chessLocX = chessLocX;
-		this.chessLocY = chessLocY;
+		this.chessCoorX = chessCoorX;
+		this.chessCoorY = chessCoorY;
 		this.grid = grid;
+		this.color = color;	//cover=-1, red=0, black=1
 		this.path = path;
 		setBounds(((int) point.getX()), ((int) point.getY()), 60, 60);
 		setBounds(((int) point.getX()), ((int) point.getY()), grid, grid);
@@ -33,37 +34,37 @@ public class Chess extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		g.setColor(new Color(227, 33, 34));
-		icon = new ImageIcon(path);
+		icon = new ImageIcon(getClass().getResource(path));
 		img = icon.getImage();
 		g.drawImage(img, 0, 0, grid * 8 / 9, grid * 8 / 9, this);
 	}
 
 	public void goBack() {
-		setLocation(chessBoardLoc.getAbsLocOnBoard(chessLocX, chessLocY));
+		setLocation(chessBoardLoc.getChessLocation(chessCoorX, chessCoorY));
 	}
 
-	public void setChessToXY(int x, int y) {
-		setLocation(chessBoardLoc.getAbsLocOnBoard(x, y));
+	public void setChessToXY(int chessCoorX, int chessCoorY) {
+		setLocation(chessBoardLoc.getChessLocation(chessCoorX, chessCoorY));
 	}
 
 	public String getChessName() {
 		return chessName;
 	}
 
-	public int getAbsLocationX() {
+	public int getFrameX() {
 		return getLocation().x;
 	}
 
-	public int getAbsLocationY() {
+	public int getFrameY() {
 		return getLocation().y;
 	}
 
-	public int getChessLocX() {
-		return chessLocX;
+	public int getChessBoardX() {
+		return chessCoorX;
 	}
 
-	public int getChessLocY() {
-		return chessLocY;
+	public int getChessBoardY() {
+		return chessCoorY;
 	}
 
 }

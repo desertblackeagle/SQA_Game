@@ -16,7 +16,7 @@ public class PlayGame {
 		// set observer observable
 		data.getChessPieceList().addObserver(playRoom.getChessBoard());
 		data.getChessPieceList().addObserver(controler.getChessPieceCoordinate());
-		playRoom.getChessBoard().addObserver(controler.getTransferFrameXY());
+		playRoom.addObserver(controler.getTransferFrameXY());
 		// set observer observable end
 		data.getChessPieceList().initChessPiece();
 	}

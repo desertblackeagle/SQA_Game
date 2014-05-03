@@ -6,12 +6,8 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-
 import ui.playRoom.ChessBoardPanel;
-import ui.playRoom.PlayRoom;
 import control.ChessGameObservable;
 import data.chessPiece.ChessPiece;
 import data.chessPiece.ChessPieceList;
@@ -24,6 +20,13 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 	public ChessBoard(int width, int height) {
 		// TODO Auto-generated constructor stub
 		super(width, height);
+		gameObs = new ChessGameObservable();
+//		allocationSpace(width - 60, height - 60);
+	}
+	public ChessBoard(int locationX, int locationY, int width, int height) {
+		// TODO Auto-generated constructor stub
+		super(width, height);
+		setLocation(locationX, locationY);
 		gameObs = new ChessGameObservable();
 //		allocationSpace(width - 60, height - 60);
 	}
@@ -73,8 +76,8 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 		// TODO Auto-generated method stub
 		int locX = (e.getX() + ((JComponent) e.getSource()).getLocation().x);
 		int locY = (e.getY() + ((JComponent) e.getSource()).getLocation().y);
-		setChanged();
-		notifyObservers(((JComponent) e.getSource()));
+		gameObs.setChanged();
+		gameObs.notifyObservers(((JComponent) e.getSource()));
 		System.out.println(locX + " : " + locY);
 	}
 	
@@ -94,37 +97,5 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 				revalidate();
 			}
 		}
-	}
-	
-	public void setChanged() {
-		gameObs.setChanged();
-	}
-	
-	public void addObserver(Observer observer) {
-		gameObs.addObserver(observer);
-	}
-	
-	public int countObservers() {
-		return gameObs.countObservers();
-	}
-	
-	public void deleteObserver(Observer observer) {
-		gameObs.deleteObserver(observer);
-	}
-	
-	public void deleteObservers() {
-		gameObs.deleteObservers();
-	}
-	
-	public void notifyObservers() {
-		gameObs.notifyObservers();
-	}
-	
-	public void notifyObservers(Object o) {
-		gameObs.notifyObservers(o);
-	}
-	
-	public void notifyObservers(Observer observer) {
-		gameObs.notifyObservers(observer);
 	}
 }

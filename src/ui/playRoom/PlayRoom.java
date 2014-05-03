@@ -21,7 +21,7 @@ public class PlayRoom extends MainFrame {
 	private PlayerInfoJPanel playerInfo;
 	private ChessBoard chessBoard;
 	private ChatPanel chatArea;
-	private JButton leaveBtn, readyBtn;
+	private JButton leaveBtn;
 	private ImageIcon backgroundPhoto;
 	private ChessGameObservable obs;
 
@@ -93,8 +93,7 @@ public class PlayRoom extends MainFrame {
 	}
 
 	private void initChessBoard() {
-		chessBoard = new ChessBoard((getWidth() - getWidth() /10) * 2 / 3, getHeight() /2);
-		chessBoard.setLocation(getWidth() /30, getHeight() /90 *14);
+		chessBoard = new ChessBoard(getWidth() /30, getHeight() /90 *14, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /2);
 		add(chessBoard);
 	}
 

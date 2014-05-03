@@ -1,7 +1,5 @@
 package control;
 
-
-import control.observer.ChessBoard;
 import control.observer.ChessPieceCoordinate;
 import control.observer.TransferFrameXY;
 
@@ -11,7 +9,7 @@ public class Controller {
 
 	public Controller(int width, int height) {
 		// TODO Auto-generated constructor stub
-		transferFrameXY = new TransferFrameXY( width,  height);
+		transferFrameXY = new TransferFrameXY(width, height);
 		chessPieceCoordinate = new ChessPieceCoordinate();
 	}
 

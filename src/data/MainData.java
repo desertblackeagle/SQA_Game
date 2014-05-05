@@ -1,6 +1,5 @@
 package data;
 
-import control.observer.ChessPieceCoordinate;
 import data.chessPiece.ChessPieceList;
 import data.chessPiece.ChessPieceLocation;
 

@@ -1,7 +1,7 @@
 package control;
 
-import control.observer.ChessPieceCoordinate;
-import control.observer.TransferFrameXY;
+import observer.ChessPieceCoordinate;
+import observer.TransferFrameXY;
 
 public class Controller {
 	private TransferFrameXY transferFrameXY;

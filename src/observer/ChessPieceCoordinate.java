@@ -1,9 +1,8 @@
-package control.observer;
+package observer;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import data.chessPiece.ChessPiece;
 import data.chessPiece.ChessPieceList;
 /*

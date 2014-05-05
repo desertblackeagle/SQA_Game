@@ -3,13 +3,10 @@ package ui.playRoom;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import data.player.Player;
-
 
 public class PlayerInfoJPanel extends JPanel {
 

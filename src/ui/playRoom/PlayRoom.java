@@ -5,16 +5,12 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import control.ChessGameObservable;
-import control.observer.ChessBoard;
 import ui.ChatPanel;
 import ui.MainFrame;
-
 
 public class PlayRoom extends MainFrame {
 	private JLabel background;

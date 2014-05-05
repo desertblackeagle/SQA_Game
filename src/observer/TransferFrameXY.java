@@ -1,8 +1,7 @@
-package control.observer;
+package observer;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import data.chessPiece.ChessPiece;
 
 public class TransferFrameXY implements Observer {

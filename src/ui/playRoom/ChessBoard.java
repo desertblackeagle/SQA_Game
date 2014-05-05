@@ -1,4 +1,4 @@
-package control.observer;
+package ui.playRoom;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JComponent;
-import ui.playRoom.ChessBoardPanel;
 import control.ChessGameObservable;
 import data.chessPiece.ChessPiece;
 import data.chessPiece.ChessPieceList;

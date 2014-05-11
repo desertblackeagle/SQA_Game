@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,23 +20,18 @@ public class PlayRoom extends MainFrame {
 	private ChatPanel chatArea;
 	private JButton leaveBtn;
 	private ImageIcon backgroundPhoto;
-	private ChessGameObservable obs;
+//	private Observable obs;
 
 	public PlayRoom() {
 		// TODO Auto-generated constructor stub
-		obs = new ChessGameObservable();
-		
 		initChessBoard();
 		initJPanel();
 		initJButton();
-
 		initBackground();
 		initBound();
 		initLocation();
 		setComponentFont();
-		revalidate();
-		repaint();
-		
+//		setGameObservable();
 		revalidate();
 		repaint();
 		testDrive();
@@ -58,6 +54,10 @@ public class PlayRoom extends MainFrame {
 		leaveBtn.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()/40));
 		//readyBtn.setFont(new Font(Font.DIALOG, Font.BOLD, getHeight()/40));
 	}
+	
+//	private void setGameObservable() {
+//		obs = getChessBoard().getChessGameObservable();
+//	}
 	
 	private void initJButton() {
 		leaveBtn = new JButton("離開");
@@ -146,39 +146,39 @@ public class PlayRoom extends MainFrame {
 		return chessBoard;
 	}
 
-	// observable //
-
-	public void setChanged() {
-		obs.setChanged();
-	}
-
-	public void addObserver(Observer observer) {
-		obs.addObserver(observer);
-	}
-
-	public int countObservers() {
-		return obs.countObservers();
-	}
-
-	public void deleteObserver(Observer observer) {
-		obs.deleteObserver(observer);
-	}
-
-	public void deleteObservers() {
-		obs.deleteObservers();
-	}
-
-	public void notifyObservers() {
-		obs.notifyObservers();
-	}
-
-	public void notifyObservers(Object o) {
-		obs.notifyObservers(o);
-	}
-
-	public void notifyObservers(Observer observer) {
-		obs.notifyObservers(observer);
-	}
+//	// observable //
+//
+//	public void setChanged() {
+//		obs.setChanged();
+//	}
+//
+//	public void addObserver(Observer observer) {
+//		obs.addObserver(observer);
+//	}
+//
+//	public int countObservers() {
+//		return obs.countObservers();
+//	}
+//
+//	public void deleteObserver(Observer observer) {
+//		obs.deleteObserver(observer);
+//	}
+//
+//	public void deleteObservers() {
+//		obs.deleteObservers();
+//	}
+//
+//	public void notifyObservers() {
+//		obs.notifyObservers();
+//	}
+//
+//	public void notifyObservers(Object o) {
+//		obs.notifyObservers(o);
+//	}
+//
+//	public void notifyObservers(Observer observer) {
+//		obs.notifyObservers(observer);
+//	}
 
 	// API end //
 	

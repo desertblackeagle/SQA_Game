@@ -12,7 +12,7 @@ public class ChessBoardPanel extends JPanel {
 	int widthFromPanelEdge, heightFromPanelEdge;
 	private int chessBoardWidth, chessBoardHeight;
 	
-
+	
 	public ChessBoardPanel(int width, int height) {
 		// TODO Auto-generated constructor stub
 		setSize(width, height);
@@ -46,7 +46,7 @@ public class ChessBoardPanel extends JPanel {
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Image/board.png"));
 		Image img = icon.getImage();
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-
+		
 		float lineWidth = 3.25f;
 		((Graphics2D) g).setStroke(new BasicStroke(lineWidth));
 
@@ -62,4 +62,15 @@ public class ChessBoardPanel extends JPanel {
 		return chessBoardHeight;
 	}
 	
+	public int getGridLength() {
+		return gridLength;
+	}
+	
+	public int getWidthFromPanelEdge() {
+		return widthFromPanelEdge;
+	}
+	
+	public int getHeightFromPanelEdge() {
+		return heightFromPanelEdge;
+	}
 }

@@ -12,8 +12,8 @@ import data.chessPiece.ChessPiece;
 import data.chessPiece.ChessPieceList;
 
 public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, MouseListener, Observer {
-	int gridLength;
-	int widthFromPanelEdge, heightFromPanelEdge;
+	private int grid;
+	private int X, Y, toX, toY;
 	private ChessGameObservable gameObs;
 	
 	public ChessBoard(int width, int height) {
@@ -30,14 +30,36 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 //		allocationSpace(width - 60, height - 60);
 	}
 	
+	public ChessGameObservable getChessGameObservable() {
+		return gameObs;
+	}
+	
+//	public int getBeforeX() {
+//		return (X - getWidthFromPanelEdge()) / getGridLength();
+//	}
+//	
+//	public int getBeforeY() {
+//		return (Y - getHeightFromPanelEdge()) / getGridLength();
+//	}
+//	
+//	public int getAfterX() {
+//		return (toX - getWidthFromPanelEdge()) / getGridLength();
+//	}
+//	
+//	public int getAfterY() {
+//		return (toY - getHeightFromPanelEdge()) / getGridLength();
+//	}
+//	
+	
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		int locX = (e.getX() + ((JComponent) e.getSource()).getLocation().x - ((JComponent) e.getSource()).getWidth() / 2);
-		int locY = (e.getY() + ((JComponent) e.getSource()).getLocation().y - ((JComponent) e.getSource()).getHeight() / 2);
+		int locX = (e.getX() + ((JComponent) e.getSource()).getLocation().x - grid / 2);
+		int locY = (e.getY() + ((JComponent) e.getSource()).getLocation().y - grid / 2);
 		setComponentZOrder(((JComponent) e.getSource()), 0);
 		((JComponent) e.getSource()).setLocation(locX, locY);
-//		System.out.println(locX + " " + locY);
+//		System.out.println("Dragged: " + locX + " : " + locY);
 	}
 	
 	@Override
@@ -65,19 +87,28 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 	}
 	
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) { //mouse location
 		// TODO Auto-generated method stub
-
+		X = (e.getX() + ((ChessPiece) e.getSource()).getLocation().x);
+		Y = (e.getY() + ((ChessPiece) e.getSource()).getLocation().y);
+		((ChessPiece) e.getSource()).setBeforeX((X - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
+		((ChessPiece) e.getSource()).setBeforeY((Y - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
+//		System.out.println("Pressed: " + (X - getWidthFromPanelEdge()) / getGridLength() + " : " + Y/getGridLength());
+//		System.out.println("GridLength: " + getGridLength() + "grid: " + grid);
+//		System.out.println("WidthFromPanelEdge: " + getWidthFromPanelEdge());
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) { //mouse location
 		// TODO Auto-generated method stub
-		int locX = (e.getX() + ((JComponent) e.getSource()).getLocation().x);
-		int locY = (e.getY() + ((JComponent) e.getSource()).getLocation().y);
+		toX = (e.getX() + ((ChessPiece) e.getSource()).getLocation().x);
+		toY = (e.getY() + ((ChessPiece) e.getSource()).getLocation().y);
+		
+		((ChessPiece) e.getSource()).setAfterX((toX - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
+		((ChessPiece) e.getSource()).setAfterY((toY - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
 		gameObs.setChanged();
 		gameObs.notifyObservers(((JComponent) e.getSource()));
-		System.out.println(locX + " : " + locY);
+//		System.out.println("Released: " + toX + " : " + toY);
 	}
 	
 	// observer //
@@ -85,12 +116,16 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		removeAll();
 		if (o instanceof ChessPieceList) {
 			if (arg instanceof ArrayList<?>) {
 				for (ChessPiece chess : (ArrayList<ChessPiece>) arg) {
+					this.grid = chess.getGrid();
 					add(chess);
+					if (!chess.getChessName().equals("cover")) {
+						chess.addMouseMotionListener(this);
+					}
 					chess.addMouseListener(this);
-					chess.addMouseMotionListener(this);
 				}
 				repaint();
 				revalidate();

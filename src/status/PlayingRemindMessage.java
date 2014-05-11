@@ -35,7 +35,7 @@ public class PlayingRemindMessage {
 					while (true) {
 						d = new Date();
 						System.out.println(d.getHours()+" : "+d.getMinutes()+" : "+d.getSeconds());
-						Thread.sleep(1000 * 10);
+						Thread.sleep(1000 * 5);
 //						System.out.println(tmp + "秒過了");
 //						tmp += 60;
 					}

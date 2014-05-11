@@ -3,9 +3,11 @@ package ui.playRoom;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import data.player.Player;
 
 public class PlayerInfoJPanel extends JPanel {
@@ -13,6 +15,7 @@ public class PlayerInfoJPanel extends JPanel {
 	private JLabel playerAScore, playerBScore, playerAPhoto, playerBPhoto, forWhoToPlay, playerAName, playerBName;
 	private ImageIcon defaultPlayerAPhoto, defaultPlayerBPhoto;
 	private Player playerA, playerB;
+	private Thread updateScore;
 
 	public PlayerInfoJPanel(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
@@ -109,11 +112,11 @@ public class PlayerInfoJPanel extends JPanel {
 		this.playerBName.setText(name);
 	}
 	
-	public void playerAScore(String score) {
+	public void setPlayerAScore(String score) {
 		this.playerAScore.setText(score);
 	}
 	
-	public void playerBScore(String score) {
+	public void setPlayerBScore(String score) {
 		this.playerAScore.setText(score);
 	}
 	
@@ -135,6 +138,29 @@ public class PlayerInfoJPanel extends JPanel {
 	}
 	
 	// API end //
+	
+	private void updateChessBoard() {
+		updateScore = new Thread(new Runnable() {
+//		boolean turnAnother = true;
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					while (true) {
+						Thread.sleep(1000 * 1);
+						// update score start
+						setPlayerAScore("分");
+						setPlayerBScore("分");
+						// update score end
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		updateScore.start();
+	}
 	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub

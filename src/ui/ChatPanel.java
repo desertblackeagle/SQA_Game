@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ public class ChatPanel extends JPanel {
 	private JTextArea chatInputArea, chatTextArea;
 	private JScrollPane chatScrollPanel;
 	private String localPlayerName = "";
+	private Thread updateChat;
 
 	public ChatPanel(int locationX, int locationY, int width, int height) {
 		// TODO Auto-generated constructor stub
@@ -23,6 +25,7 @@ public class ChatPanel extends JPanel {
 		initJTextArea();
 		initScrollPane();
 		setComponentFont();
+		updateChat();
 	}
 
 	// init Component //
@@ -97,4 +100,30 @@ public class ChatPanel extends JPanel {
 	}
 
 	// API end //
+	
+	private void updateChat() {
+		updateChat = new Thread(new Runnable() {
+		boolean hasChat = true;
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					while (true) {
+						Thread.sleep(100);
+						// update chat start
+						if (hasChat) {
+							appendChatArea("another player > hi");
+							hasChat = false;
+						}
+						
+						// update chat end
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		updateChat.start();
+	}
 }

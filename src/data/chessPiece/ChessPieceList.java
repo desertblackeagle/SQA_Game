@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import control.ChessGameObservable;
-
 /* 
  * add chess in ArrayList
  * initChessPiece
@@ -15,6 +13,7 @@ public class ChessPieceList extends Observable implements Observer {
 	private ChessPiece cover;
 	private ChessPieceLocation chessBoardLoc;
 	private ArrayList<ChessPiece> chessPieceList;
+	private Thread updateChessBoard;
 	boolean canMove = true;
 
 	public ChessPieceList(ChessPieceLocation chessBoardLoc) {
@@ -95,5 +94,28 @@ public class ChessPieceList extends Observable implements Observer {
 		chesses[0][0] = "NULL";
 		chesses[1][3] = "redHorse";
 		return chesses;
+	}
+	
+	private void updateChessBoard() {
+		updateChessBoard = new Thread(new Runnable() {
+		boolean turnAnother = true;
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					while (turnAnother) {
+						Thread.sleep(1000 * 1);
+						// update chess board start
+						setChessPiece(-1, updateChessBoardInfo());
+						canMove = false;
+						// update chess board end
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		updateChessBoard.start();
 	}
 }

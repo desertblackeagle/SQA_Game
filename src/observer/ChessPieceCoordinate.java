@@ -21,6 +21,7 @@ public class ChessPieceCoordinate implements Observer {
 		// TODO Auto-generated method stub
 		if (o instanceof ChessPieceList) {
 			if (arg instanceof ArrayList<?>) {
+				resetCoordinate();
 				for (ChessPiece chess : (ArrayList<ChessPiece>) arg) {
 					chessPieceCoordinate[chess.getChessBoardY()][chess.getChessBoardX()] = chess;
 				}
@@ -28,17 +29,30 @@ public class ChessPieceCoordinate implements Observer {
 			}
 		}
 	}
-
+	
+	private void resetCoordinate() {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 8; j++) {
+				chessPieceCoordinate[i][j] = null;
+			}
+		}
+	}
+	
 	private void printCoordinate() {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (chessPieceCoordinate[i][j] != null) {
-					System.out.print(chessPieceCoordinate[i][j].getChessName() + "\t");
+					if (chessPieceCoordinate[i][j].getChessName().equals("cover")) {
+						System.out.print(chessPieceCoordinate[i][j].getChessName() + "\t\t");
+					} else {
+						System.out.print(chessPieceCoordinate[i][j].getChessName() + "\t");
+					}
 				} else {
 					System.out.print("NULL" + "\t\t");
 				}
 			}
 			System.out.println();
 		}
+		System.out.println("---------------------------------");
 	}
 }

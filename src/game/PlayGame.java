@@ -6,7 +6,7 @@ import ui.playRoom.PlayRoom;
 
 public class PlayGame {
 
-	private static String[][] chesses;
+	private String[][] chesses;
 	PlayRoom playRoom;
 	int chessBoardWidth, chessBoardHeight;
 	MainData data;
@@ -23,26 +23,28 @@ public class PlayGame {
 		data.getChessPieceList().addObserver(playRoom.getChessBoard());
 		data.getChessPieceList().addObserver(controler.getChessPieceCoordinate());
 		playRoom.getChessBoard().getChessGameObservable().addObserver(controler.getTransferFrameXY());
+		playRoom.getChessBoard().getChessGameObservable().addObserver(data.getChessPieceList());
 		// set observer observable end
+		data.getChessPieceList().initChessPiece();
 	}
 	
 	public void test() {
 		chesses = new String[8][4];
 		
-//		data.getChessPieceList().initChessPiece();
-//		data.getChessPieceList().initChessPiece();
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 4; j++) {
-				chesses[i][j] = "cover";
-			}
-		}
-		chesses[0][0] = "NULL";
-		data.getChessPieceList().setChessPiece(0, chesses);
-		chesses[1][3] = "redHorse";
-		data.getChessPieceList().setChessPiece(0, chesses);
-		chesses[2][3] = "redHorse";
-		data.getChessPieceList().setChessPiece(0, chesses);
+//		for (int i = 0; i < 8; i++) {
+//			for (int j = 0; j < 4; j++) {
+//				chesses[i][j] = "cover";
+//			}
+//		}
+//		chesses[0][0] = "NULL";
+//		data.getChessPieceList().setChessPiece(0, chesses);
+//		chesses[1][3] = "redHorse";
+//		data.getChessPieceList().setChessPiece(0, chesses);
+//		chesses[2][3] = "redHorse";
+//		data.getChessPieceList().setChessPiece(0, chesses);
 //		System.out.println("x: " + playRoom.getChessBoard().getBefortX() + " to " + playRoom.getChessBoard().getAfterX());
+//		chesses = controler.getTransferFrameXY().getChessName();
+//		data.getChessPieceList().setChessPiece(0, chesses);
 	}
 	
 	public static void main(String[] args) {

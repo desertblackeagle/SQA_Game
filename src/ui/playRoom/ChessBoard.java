@@ -91,8 +91,8 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 		// TODO Auto-generated method stub
 		X = (e.getX() + ((ChessPiece) e.getSource()).getLocation().x);
 		Y = (e.getY() + ((ChessPiece) e.getSource()).getLocation().y);
-		((ChessPiece) e.getSource()).setBeforeX((X - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
-		((ChessPiece) e.getSource()).setBeforeY((Y - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
+		((ChessPiece) e.getSource()).setBeforeX((X - getWidthFromPanelEdge()) / getGridLength());
+		((ChessPiece) e.getSource()).setBeforeY((Y - getHeightFromPanelEdge()) / getGridLength());
 //		System.out.println("Pressed: " + (X - getWidthFromPanelEdge()) / getGridLength() + " : " + Y/getGridLength());
 //		System.out.println("GridLength: " + getGridLength() + "grid: " + grid);
 //		System.out.println("WidthFromPanelEdge: " + getWidthFromPanelEdge());
@@ -104,8 +104,8 @@ public class ChessBoard extends ChessBoardPanel implements MouseMotionListener, 
 		toX = (e.getX() + ((ChessPiece) e.getSource()).getLocation().x);
 		toY = (e.getY() + ((ChessPiece) e.getSource()).getLocation().y);
 		
-		((ChessPiece) e.getSource()).setAfterX((toX - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
-		((ChessPiece) e.getSource()).setAfterY((toY - getWidthFromPanelEdge()) / (int)(getGridLength()*0.9));
+		((ChessPiece) e.getSource()).setAfterX((toX - getWidthFromPanelEdge()) / getGridLength());
+		((ChessPiece) e.getSource()).setAfterY((toY - getHeightFromPanelEdge()) / getGridLength());
 		gameObs.setChanged();
 		gameObs.notifyObservers(((JComponent) e.getSource()));
 //		System.out.println("Released: " + toX + " : " + toY);

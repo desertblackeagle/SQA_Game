@@ -1,30 +1,40 @@
 package observer;
 
-import java.util.Observable;
-import java.util.Observer;
-import data.chessPiece.ChessPiece;
+import control.Controller;
+import data.MainData;
+import ui.playRoom.PlayRoom;
 
-public class controlChess implements Observer {
-	private int boardWidth, boardHeight;
+public class controlChess {
 
-	public controlChess(int boardWidth, int boardHeight) {
-		this.boardWidth = boardWidth;
-		this.boardHeight = boardHeight;
+	private String[][] chesses;
+	private PlayRoom playRoom;
+	private int chessBoardWidth, chessBoardHeight;
+	private MainData data;
+	private Controller controler;
+	
+	public controlChess() {
+		playRoom = new PlayRoom();
+		chessBoardWidth = playRoom.getChessBoard().getChessBoardWidth();
+		chessBoardHeight = playRoom.getChessBoard().getChessBoardHeight();
+		data = new MainData(chessBoardWidth, chessBoardHeight);
+		controler = new Controller(chessBoardWidth, chessBoardHeight);
+		
+		// set observer observable
+		data.getChessPieceList().addObserver(playRoom.getChessBoard());
+		data.getChessPieceList().addObserver(controler.getChessPieceCoordinate());
+		playRoom.getChessBoard().getChessGameObservable().addObserver(controler.getTransferFrameXY());
+		// set observer observable end
+		data.getChessPieceList().initChessPiece();
 	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		if (arg instanceof ChessPiece) {
-//			int locX = (((ChessPiece) arg).getFrameX() + ((ChessPiece) arg).getGrid() / 2);
-//			int locY = (((ChessPiece) arg).getFrameY() + ((ChessPiece) arg).getGrid() / 2);
-//			System.out.println("Tran : " + locX + " : " + locY);
-//			System.out.println("locX: " + locX);
-//			if (locX < 0 || locY < 0 || locX > boardWidth || locY > boardHeight) {
-//				((ChessPiece) arg).goBack();
-//			}
-//			System.out.println("x: " + ((ChessPiece) arg).getBeforeX() + " to " + ((ChessPiece) arg).getAfterX());
-
-		}
+	
+	public void test() {
+		chesses = new String[8][4];
+		chesses = controler.getTransferFrameXY().getChessName();
+		data.getChessPieceList().setChessPiece(0, chesses);
+	}
+	
+	public static void main(String[] args) {
+		controlChess pg = new controlChess();
+		pg.test();
 	}
 }

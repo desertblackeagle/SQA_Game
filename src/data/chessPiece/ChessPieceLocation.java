@@ -8,10 +8,14 @@ public class ChessPieceLocation {
 	private Point[][] chessLocation;
 	private int gridLength;
 	private int widthFromPanelEdge, heightFromPanelEdge;
+	private int width, height;
 	
 	public ChessPieceLocation(int width, int height) {
+		
 //		 TODO Auto-generated constructor stub
 		chessLocation = new Point[4][8];
+		this.width = width;
+		this.height = height;
 		allocationSpace(width, height);
 		calcLocation();
 	}
@@ -43,13 +47,21 @@ public class ChessPieceLocation {
 		return gridLength;
 	}
 	
+	public int getBoardWidth() {
+		return width;
+	}
+	
+	public int getBoardHeight() {
+		return height;
+	}
+	
 	public Point getChessLocation(int chessCoorX, int chessCoorY) {
 		if (chessCoorX < 0 || chessCoorX > 8 || chessCoorY < 0 || chessCoorY > 4) {
 			System.out.println("Error : ");
 		}
 		return chessLocation[chessCoorY][chessCoorX];
 	}
-
+	
 //	public static void main(String[] args) {
 //		ChessBoardLocation c = new ChessBoardLocation(848, 790);
 //	}

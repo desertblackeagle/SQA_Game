@@ -28,6 +28,8 @@ public class ChessPiece extends ChessPiecePicture {
 
 	public void goBack() {
 		setLocation(chessBoardLoc.getChessLocation(beforeX, beforeY));
+		setAfterX(beforeX);
+		setAfterY(beforeY);
 	}
 
 	public void setChessToXY(int chessCoorX, int chessCoorY) {

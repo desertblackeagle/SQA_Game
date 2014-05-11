@@ -61,6 +61,9 @@ public class ChatPanel extends JPanel {
 					System.out.println(chatInputArea.getText().replace("\n", ""));
 					chatTextArea.append(localPlayerName + " >" + chatInputArea.getText().replace("\n", "") + "\n");
 					chatTextArea.setCaretPosition(chatTextArea.getText().length());
+					//call server chat start
+					
+					//call server chat end
 					chatInputArea.setText("");
 				}
 			}

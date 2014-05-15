@@ -3,11 +3,13 @@ package ui.playRoom;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import rmi.GameClient;
 import data.player.Player;
 
 public class PlayerInfoJPanel extends JPanel {
@@ -16,9 +18,12 @@ public class PlayerInfoJPanel extends JPanel {
 	private ImageIcon defaultPlayerAPhoto, defaultPlayerBPhoto;
 	private Player playerA, playerB;
 	private Thread updateScore;
+	private GameClient server;
+	private String userToken;
 
-	public PlayerInfoJPanel(int locationX, int locationY, int width, int height) {
+	public PlayerInfoJPanel(int locationX, int locationY, int width, int height, GameClient server) {
 		// TODO Auto-generated constructor stub
+		this.server = server;
 		setSize(width, height);
 		setLocation(locationX, locationY);
 		setLayout(null);
@@ -140,6 +145,19 @@ public class PlayerInfoJPanel extends JPanel {
 	
 	// API end //
 	
+	private int getScore() {
+		int score;
+		score = -1;
+		try {
+			score = server.s.getScore(server.getRoom(), userToken);
+			return score;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return score;
+	}
+	
 	private void updateScore() {
 		updateScore = new Thread(new Runnable() {
 //		boolean turnAnother = true;
@@ -150,8 +168,8 @@ public class PlayerInfoJPanel extends JPanel {
 					while (true) {
 						Thread.sleep(1000 * 1);
 						// update score start
-						setPlayerAScore("分");
-						setPlayerBScore("分");
+						setPlayerAScore(getScore() + "分");
+						setPlayerBScore(getScore() + "分");
 						// update score end
 					}
 				} catch (InterruptedException e) {

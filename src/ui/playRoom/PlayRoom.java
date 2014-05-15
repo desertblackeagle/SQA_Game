@@ -87,7 +87,7 @@ public class PlayRoom extends MainFrame {
 	}
 	//設定Panel
 	private void initJPanel() {
-		playerInfo = new PlayerInfoJPanel(getWidth() /30, getHeight() /90 *62, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /9 *2);
+		playerInfo = new PlayerInfoJPanel(getWidth() /30, getHeight() /90 *62, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /9 *2, server);
 		add(playerInfo);
 		chatArea = new ChatPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52, server);
 		add(chatArea);

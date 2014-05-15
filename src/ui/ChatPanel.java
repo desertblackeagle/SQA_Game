@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.rmi.RemoteException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import rmi.GameClient;
 
 public class ChatPanel extends JPanel {
 	
@@ -16,9 +17,12 @@ public class ChatPanel extends JPanel {
 	private JScrollPane chatScrollPanel;
 	private String localPlayerName = "";
 	private Thread updateChat;
+	private GameClient server;
+	private String userToken;
 
-	public ChatPanel(int locationX, int locationY, int width, int height) {
+	public ChatPanel(int locationX, int locationY, int width, int height, GameClient server) {
 		// TODO Auto-generated constructor stub
+		this.server = server;
 		setSize(width, height);
 		setLocation(locationX, locationY);
 		setLayout(null);
@@ -103,7 +107,6 @@ public class ChatPanel extends JPanel {
 	
 	private void updateChat() {
 		updateChat = new Thread(new Runnable() {
-		boolean hasChat = true;
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -111,14 +114,15 @@ public class ChatPanel extends JPanel {
 					while (true) {
 						Thread.sleep(100);
 						// update chat start
-						if (hasChat) {
-							appendChatArea("another player > hi");
-							hasChat = false;
+						if (server.s.hasNewMsg(server.getRoom())) {
+							appendChatArea(server.s.updateChat(server.getRoom()));
 						}
-						
 						// update chat end
 					}
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

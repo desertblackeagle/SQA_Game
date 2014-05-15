@@ -1,5 +1,6 @@
 package game;
 
+import rmi.GameClient;
 import control.Controller;
 import data.MainData;
 import ui.playRoom.PlayRoom;
@@ -8,15 +9,17 @@ public class PlayGame {
 
 	private String[][] chesses;
 	PlayRoom playRoom;
+	GameClient server;
 	int chessBoardWidth, chessBoardHeight;
 	MainData data;
 	Controller controler;
 	
 	public PlayGame() {
-		playRoom = new PlayRoom();
+		server = new GameClient();
+		playRoom = new PlayRoom(server);
 		chessBoardWidth = playRoom.getChessBoard().getChessBoardWidth();
 		chessBoardHeight = playRoom.getChessBoard().getChessBoardHeight();
-		data = new MainData(chessBoardWidth, chessBoardHeight);
+		data = new MainData(chessBoardWidth, chessBoardHeight, server);
 		controler = new Controller(chessBoardWidth, chessBoardHeight);
 		
 		// set observer observable

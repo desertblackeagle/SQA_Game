@@ -106,7 +106,7 @@ public class GameWaitRoom extends MainFrame {
 		waitingPlayerPanel.setOpaque(false);
 		add(waitingPlayerPanel);
 
-		waitingRoomChatJPanel = new ChatPanel(100 + waitingPlayerPanel.getWidth(), 75, remainSpaceX * 1 / 3, 600);
+//		waitingRoomChatJPanel = new ChatPanel(100 + waitingPlayerPanel.getWidth(), 75, remainSpaceX * 1 / 3, 600);
 		waitingRoomChatJPanel.setOpaque(false);
 		add(waitingRoomChatJPanel);
 	}

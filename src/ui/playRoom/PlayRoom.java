@@ -6,9 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import rmi.GameClient;
 import control.ChessGameObservable;
 import ui.ChatPanel;
 import ui.MainFrame;
@@ -20,10 +23,12 @@ public class PlayRoom extends MainFrame {
 	private ChatPanel chatArea;
 	private JButton leaveBtn;
 	private ImageIcon backgroundPhoto;
+	private GameClient server;
 //	private Observable obs;
 
-	public PlayRoom() {
+	public PlayRoom(GameClient server) {
 		// TODO Auto-generated constructor stub
+		this.server = server;
 		initChessBoard();
 		initJPanel();
 		initJButton();
@@ -84,7 +89,7 @@ public class PlayRoom extends MainFrame {
 	private void initJPanel() {
 		playerInfo = new PlayerInfoJPanel(getWidth() /30, getHeight() /90 *62, (getWidth() - getWidth() /10) * 2 / 3, getHeight() /9 *2);
 		add(playerInfo);
-		chatArea = new ChatPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52);
+		chatArea = new ChatPanel(getWidth() - (getWidth() - getWidth() /50) / 3, getHeight() /9 *3, (getWidth() - getWidth() /60 *7) / 3, getHeight() /90 *52, server);
 		add(chatArea);
 	}
 

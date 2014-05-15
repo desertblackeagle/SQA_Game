@@ -29,6 +29,7 @@ public class PlayerInfoJPanel extends JPanel {
 		initBound();
 		initLocation();
 		setComponentFont();
+		updateScore();
 	}
 
 	// init Component //
@@ -139,7 +140,7 @@ public class PlayerInfoJPanel extends JPanel {
 	
 	// API end //
 	
-	private void updateChessBoard() {
+	private void updateScore() {
 		updateScore = new Thread(new Runnable() {
 //		boolean turnAnother = true;
 			@Override

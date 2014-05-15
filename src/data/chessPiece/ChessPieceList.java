@@ -1,12 +1,15 @@
 package data.chessPiece;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import rmi.GameClient;
 
 /* 
  * add chess in ArrayList
  * initChessPiece
+ * update chess board
  */
 public class ChessPieceList extends Observable implements Observer {
 	private ChessPiece temp;
@@ -14,12 +17,16 @@ public class ChessPieceList extends Observable implements Observer {
 	private ChessPieceLocation chessBoardLoc;
 	private ArrayList<ChessPiece> chessPieceList;
 	private Thread updateChessBoard;
-	boolean canMove = true;
+	private GameClient server;
+	private String userToken;
+	boolean turnUser = true; //add server API
 
-	public ChessPieceList(ChessPieceLocation chessBoardLoc) {
+	public ChessPieceList(ChessPieceLocation chessBoardLoc, GameClient server) {
+		this.server = server;
 		this.chessBoardLoc = chessBoardLoc;
 		chessPieceList = new ArrayList<ChessPiece>();
 		initChessPiece();
+//		updateChessBoard();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -35,8 +42,7 @@ public class ChessPieceList extends Observable implements Observer {
 		notifyObservers(chessPieceList);
 	}
 	
-	public void setChessPiece(int color, String[][] chessBoard) {
-		
+	public void setChessPiece(String[][] chessBoard) {
 		chessPieceList.removeAll(chessPieceList);
 		
 		for (int i = 0; i < 8; i++) {
@@ -50,7 +56,6 @@ public class ChessPieceList extends Observable implements Observer {
 		setChanged();
 		notifyObservers(chessPieceList);
 	}
-	
 
 	public ArrayList<ChessPiece> getChessList() {
 		return chessPieceList;
@@ -64,53 +69,56 @@ public class ChessPieceList extends Observable implements Observer {
 		if (arg instanceof ChessPiece) {
 			int locX = (((ChessPiece) arg).getFrameX() + ((ChessPiece) arg).getGrid() / 2);
 			int locY = (((ChessPiece) arg).getFrameY() + ((ChessPiece) arg).getGrid() / 2);
-			// System.out.println("x: " + ((ChessPiece) arg).getBeforeX() +
-			// " to " + ((ChessPiece) arg).getAfterX());
+			int beforeX = ((ChessPiece) arg).getBeforeX();
+			int beforeY = ((ChessPiece) arg).getBeforeY();
+			int afterX = ((ChessPiece) arg).getAfterX();
+			int afterY = ((ChessPiece) arg).getAfterY();
 			
-//			System.out.println("Tran : " + locX + " : " + locY);
-//			System.out.println("chessBoardLoc.getBoardWidth() : " + chessBoardLoc.getBoardWidth());
-			// System.out.println("locX: " + locX);
 			if (locX < 0 || locY < 0 || locX > chessBoardLoc.getBoardWidth() || locY > chessBoardLoc.getBoardHeight()) {
 				((ChessPiece) arg).goBack();
-//				System.out.println("123");
-			} else if (canMove) {
-				
-				setChessPiece(-1, updateChessBoardInfo());
-				canMove = false;
-//				((ChessPiece) arg).setChessToXY(((ChessPiece) arg).getAfterX(), ((ChessPiece) arg).getAfterY());
 			} else {
-				((ChessPiece) arg).goBack();
+				try {
+					if (server.s.moveChess(server.getRoom(), userToken, beforeX, beforeY, afterX, afterY)) {
+						setChessPiece(server.s.updateChessBoardInfo(server.getRoom(), userToken));
+					} else {
+						((ChessPiece) arg).goBack();
+					}
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-	
-	public String[][] updateChessBoardInfo() {
-		String[][] chesses = new String[8][4];
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 4; j++) {
-				chesses[i][j] = "cover";
-			}
-		}
-		chesses[0][0] = "NULL";
-		chesses[1][3] = "redHorse";
-		return chesses;
-	}
+//	
+//	public String[][] updateChessBoardInfo() {
+//		String[][] chesses = new String[8][4];
+//		for (int i = 0; i < 8; i++) {
+//			for (int j = 0; j < 4; j++) {
+//				chesses[i][j] = "cover";
+//			}
+//		}
+//		chesses[0][0] = "NULL";
+//		chesses[1][3] = "redHorse";
+//		return chesses;
+//	}
 	
 	private void updateChessBoard() {
 		updateChessBoard = new Thread(new Runnable() {
-		boolean turnAnother = true;
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
-					while (turnAnother) {
+					while (!turnUser) {
 						Thread.sleep(1000 * 1);
 						// update chess board start
-						setChessPiece(-1, updateChessBoardInfo());
-						canMove = false;
+						setChessPiece(server.s.updateChessBoardInfo(server.getRoom(), userToken));
 						// update chess board end
 					}
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

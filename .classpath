@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/server/serverclasses/gameServer.jar"/>
 	<classpathentry kind="src" path="/DarkChess_Server"/>
+	<classpathentry kind="lib" path="lib/gameServer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

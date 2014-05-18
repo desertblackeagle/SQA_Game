@@ -14,7 +14,7 @@ public class PlayGame {
 	MainData data;
 	Controller controler;
 	
-	public PlayGame() {
+	public PlayGame(String userToken, String secretToken) {
 		server = new GameClient();
 		playRoom = new PlayRoom(server);
 		chessBoardWidth = playRoom.getChessBoard().getChessBoardWidth();
@@ -51,7 +51,10 @@ public class PlayGame {
 	}
 	
 	public static void main(String[] args) {
-		PlayGame pg = new PlayGame();
-		pg.test();
+		String userToken, secretToken;
+		userToken = args[0];
+		secretToken = args[1];
+		PlayGame pg = new PlayGame(userToken, secretToken);
+//		pg.test();
 	}
 }

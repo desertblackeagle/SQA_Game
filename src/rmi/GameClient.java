@@ -6,13 +6,16 @@ import java.rmi.RemoteException;
 
 import rmi.ServerInterface;
 import data.chessPiece.ChessPieceList;
+import data.player.Player;
 
 public class GameClient {
 	public ServerInterface s;
 	private int beforeX, beforeY, afterX, afterY;
+	private int room;
 	private String chat;
 	private String userToken, userSecretToken, rivalToken, rivalSecretToken;
 	private ChessPieceList chessPieceList;
+	private boolean action = false;
 	
 	public GameClient() {
 		try {
@@ -28,9 +31,13 @@ public class GameClient {
 			e.printStackTrace();
 		}
 	}
+    /*還未加上的*/
+//	public int connect(String UserToken) ;
+//	public int connect(String UserToken,String rivalToken) ;
+//	public String[][] updateChessBoardInfo(int roomNum,String UserToken) ;
 	
+	//room拉到上面
 	public int getRoom() {
-		int room;
 		room = -1;
 		try {
 			room = s.getRoomNum(userToken);
@@ -41,6 +48,83 @@ public class GameClient {
 		return room;
 	}
 	
+	public boolean moveChess(){
+		action = false;
+		try{
+			action = s.moveChess(room, userToken, beforeX, beforeY, afterX, afterY);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return action;
+	}
+	
+	public String getRivalToken(){
+		String rival = "";
+		try{
+			rival = s.getRivalToken(room);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return rival;
+	}
+	//聊天訊息放chat?
+	public boolean chat(){
+		action = false;
+		try{
+			action = s.chat(room, userToken, msg);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return action;
+	}
+	
+	public boolean isTurnUser(){
+		action = false;
+		try{
+			action = s.isTurnUser(room, userToken);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return action;
+	}
+	
+	public boolean hasNewMsg(){
+		action = false;
+		try{
+			action = s.hasNewMsg(room);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return action;
+	}
+	
+	public String updateChat(){
+		try{
+			chat = s.updateChat(room);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return chat;
+	}
+	
+	public int getScore(){
+		int score = 0;
+		try{
+			score = s.getScore(room, userToken);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return score;
+	}
+	
+	public boolean isWin(){
+		try{
+			action = s.isWin(room, userToken);
+		}catch (RemoteException e1){
+			e1.printStackTrace();
+		}
+		return action;
+	}
 //	public static void main(String args[])
 //	{
 //		d = null;

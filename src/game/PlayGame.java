@@ -19,7 +19,7 @@ public class PlayGame {
 		playRoom = new PlayRoom(server);
 		chessBoardWidth = playRoom.getChessBoard().getChessBoardWidth();
 		chessBoardHeight = playRoom.getChessBoard().getChessBoardHeight();
-		data = new MainData(chessBoardWidth, chessBoardHeight, server);
+		data = new MainData(chessBoardWidth, chessBoardHeight, server, userToken);
 		controler = new Controller(chessBoardWidth, chessBoardHeight);
 		
 		// set observer observable

@@ -18,7 +18,6 @@ public class ChatPanel extends JPanel {
 	private String localPlayerName = "";
 	private Thread updateChat;
 	private GameClient server;
-	private String userToken;
 
 	public ChatPanel(int locationX, int locationY, int width, int height, GameClient server) {
 		// TODO Auto-generated constructor stub

@@ -13,15 +13,14 @@ import rmi.GameClient;
  */
 public class ChessPieceList extends Observable implements Observer {
 	private ChessPiece temp;
-	private ChessPiece cover;
 	private ChessPieceLocation chessBoardLoc;
 	private ArrayList<ChessPiece> chessPieceList;
 	private Thread updateChessBoard;
 	private GameClient server;
 	private String userToken;
-	boolean turnUser = true; //add server API
 
-	public ChessPieceList(ChessPieceLocation chessBoardLoc, GameClient server) {
+	public ChessPieceList(ChessPieceLocation chessBoardLoc, GameClient server, String userToken) {
+		this.userToken = userToken;
 		this.server = server;
 		this.chessBoardLoc = chessBoardLoc;
 		chessPieceList = new ArrayList<ChessPiece>();
@@ -33,8 +32,8 @@ public class ChessPieceList extends Observable implements Observer {
 	public void initChessPiece() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 4; j++) {
-				cover = new ChessPiece(chessBoardLoc.getChessLocation(i, j), i, j, -1, chessBoardLoc.getGridLength(), "cover", chessBoardLoc);
-				chessPieceList.add(cover);
+				temp = new ChessPiece(chessBoardLoc.getChessLocation(i, j), i, j, -1, chessBoardLoc.getGridLength(), "cover", chessBoardLoc);
+				chessPieceList.add(temp);
 			}
 		}
 		
@@ -48,8 +47,8 @@ public class ChessPieceList extends Observable implements Observer {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (!chessBoard[i][j].equals("NULL")) {
-					cover = new ChessPiece(chessBoardLoc.getChessLocation(i, j), i, j, -1, chessBoardLoc.getGridLength(), chessBoard[i][j], chessBoardLoc);
-					chessPieceList.add(cover);
+					temp = new ChessPiece(chessBoardLoc.getChessLocation(i, j), i, j, -1, chessBoardLoc.getGridLength(), chessBoard[i][j], chessBoardLoc);
+					chessPieceList.add(temp);
 				}
 			}
 		}
@@ -109,7 +108,7 @@ public class ChessPieceList extends Observable implements Observer {
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
-					while (!turnUser) {
+					while (!server.s.isTurnUser(server.getRoom(), userToken)) {
 						Thread.sleep(1000 * 1);
 						// update chess board start
 						setChessPiece(server.s.updateChessBoardInfo(server.getRoom(), userToken));

@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="src" path="/DarkChess_Server"/>
-	<classpathentry kind="lib" path="C:/Users/pisces0209/Desktop/lib/lib/gameServer.jar"/>
+	<classpathentry kind="lib" path="C:/server/serverclasses/gameServer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -68,7 +68,7 @@ public class GameClient {
 		return rival;
 	}
 	//聊天訊息放chat?
-	public boolean chat(){
+	public boolean chat(String msg){
 		action = false;
 		try{
 			action = s.chat(room, userToken, msg);

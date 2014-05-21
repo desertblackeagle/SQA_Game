@@ -9,10 +9,10 @@ public class MainData {
 	private ChessPieceList chessPieceList;
 	
 
-	public MainData(int width, int height, GameClient server) {
+	public MainData(int width, int height, GameClient server, String userToken) {
 		// TODO Auto-generated constructor stub
 		chessBoardLoc = new ChessPieceLocation(width, height);
-		chessPieceList = new ChessPieceList(chessBoardLoc, server);
+		chessPieceList = new ChessPieceList(chessBoardLoc, server, userToken);
 		
 	}
 
